@@ -157,7 +157,7 @@ func (l *LBD) Do(r Requester, sign bool) (*Response, error) {
 	}
 
 	if resp.StatusCode >= 400 {
-		fmt.Printf("request error:\n%+v\n", resp)
+		fmt.Printf("request error:\n[request]:%+v\n[resp]:%+v\n[request]:%+v\n[body]:%+v\n", req, resp, resp.Request, resp.Body)
 		return ret, fmt.Errorf("LBD: Backend returns status: %d msg: %s", ret.StatusCode, ret.StatusMessage)
 	}
 
