@@ -61,7 +61,7 @@ func (l LBD) RetrieveBalanceOfAllNonFungiblesUserWallet(userId, contractId strin
 		if err != nil {
 			return nil, err
 		}
-		if len(ret) == 0 {
+		if len(ret) < r.pager.Limit {
 			break
 		}
 		all = append(all, ret...)
