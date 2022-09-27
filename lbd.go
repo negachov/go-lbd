@@ -158,10 +158,9 @@ func (l *LBD) Do(r Requester, sign bool) (*Response, error) {
 		return nil, err
 	}
 
+	e := time.Now().Unix()
+	fmt.Printf("begin[%d], end[%d], elapsed[%d]\n", s, e, e-s)
 	if resp.StatusCode >= 400 {
-		e := time.Now().Unix()
-
-		fmt.Printf("begin[%d], end[%d], elapsed[%d]\n", s, e, e-s)
 		fmt.Printf("request error:\n[request]:%+v\n[resp]:%+v\n[body]:%+v\n", resp.Request, resp, ret)
 		return ret, fmt.Errorf("LBD: Backend returns status: %d msg: %s", ret.StatusCode, ret.StatusMessage)
 	}
